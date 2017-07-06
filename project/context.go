@@ -24,6 +24,7 @@ type Context struct {
 	ProjectName         string
 	Version             string
 	PreviousVersion     string
+	StackName           string
 	isOpen              bool
 	ServiceFactory      ServiceFactory
 	ContainerFactory    ServiceFactory

@@ -162,7 +162,10 @@ func (p *Project) load(file string, bytes []byte) error {
 	config, err := config.Merge(p.ServiceConfigs, p.context.EnvironmentLookup, p.context.ResourceLookup, template.ReleaseInfo{
 		Version:         p.context.Version,
 		PreviousVersion: p.context.PreviousVersion,
+	}, template.StackInfo{
+		Name: p.context.StackName,
 	}, file, bytes)
+
 	if err != nil {
 		log.Errorf("Could not parse config for project %s : %v", p.Name, err)
 		return err

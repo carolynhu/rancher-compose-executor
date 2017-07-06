@@ -146,6 +146,7 @@ func (c *Context) LoadStack() (*client.Stack, error) {
 	}
 
 	c.Stack = stack
+	c.StackName = stack.Name
 
 	return c.Stack, nil
 }
