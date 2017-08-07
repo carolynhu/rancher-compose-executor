@@ -12,10 +12,10 @@ import (
 	"github.com/docker/docker/runconfig/opts"
 	"github.com/docker/go-connections/nat"
 	"github.com/docker/go-units"
-	"github.com/docker/libcompose/utils"
 	"github.com/rancher/rancher-compose-executor/config"
 	"github.com/rancher/rancher-compose-executor/project"
 	"github.com/rancher/rancher-compose-executor/yaml"
+	"github.com/rancher/rancher-compose-executor/utils"
 )
 
 // ConfigWrapper wraps Config, HostConfig and NetworkingConfig for a container.
@@ -166,6 +166,7 @@ func Convert(c *config.ServiceConfig, ctx project.Context) (*container.Config, *
 		Volumes:      toMap(Filter(vols, isVolume)),
 		MacAddress:   c.MacAddress,
 		StopSignal:   c.StopSignal,
+		StopTimeout:  &int(c.StopGracePeriod),
 	}
 
 	ulimits := []*units.Ulimit{}

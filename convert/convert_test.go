@@ -12,6 +12,7 @@ import (
 	"github.com/rancher/rancher-compose-executor/lookup"
 	"github.com/rancher/rancher-compose-executor/project"
 	"github.com/rancher/rancher-compose-executor/yaml"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -221,6 +222,30 @@ func TestStopSignal(t *testing.T) {
 	assert.Nil(t, err)
 
 	assert.Equal(t, "SIGTERM", cfg.StopSignal)
+}
+
+func TestStopGracePeriod(t *testing.T) {
+	ctx := project.Context{}
+	sc1 := &config.ServiceConfig{
+		StopGracePeriod: yaml.DurationStringorInt(10),
+	}
+	cfg1, _, err := Convert(sc1, ctx)
+	assert.Nil(t, err)
+	assert.Equal(t, 10, *cfg1.StopTimeout)
+
+	sc2 := &config.ServiceConfig{
+		StopGracePeriod: yaml.DurationStringorInt("10s"),
+	}
+	cfg2, _, err := Convert(sc2, ctx)
+	assert.Nil(t, err)
+	assert.Equal(t, 10, *cfg2.StopTimeout)
+
+	sc3 := &config.ServiceConfig{
+		StopGracePeriod: yaml.DurationStringorInt("1m30s"),
+	}
+	cfg3, _, err := Convert(sc3, ctx)
+	assert.Nil(t, err)
+	assert.Equal(t, 90, *cfg3.StopTimeout)
 }
 
 func TestSysctls(t *testing.T) {

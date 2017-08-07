@@ -102,3 +102,25 @@ func TrimSplit(str, sep string, count int) []string {
 
 	return result
 }
+
+// CopySlice creates an exact copy of the provided string slice
+func CopySlice(s []string) []string {
+	if s == nil {
+		return nil
+	}
+	r := make([]string, len(s))
+	copy(r, s)
+	return r
+}
+
+// CopyMap creates an exact copy of the provided string-to-string map
+func CopyMap(m map[string]string) map[string]string {
+	if m == nil {
+		return nil
+	}
+	r := map[string]string{}
+	for k, v := range m {
+		r[k] = v
+	}
+	return r
+}
