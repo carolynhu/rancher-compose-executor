@@ -239,6 +239,8 @@ func Convert(c *config.ServiceConfig, ctx project.Context) (*container.Config, *
 		CPUShares:            int64(c.CPUShares),
 		CPUQuota:             int64(c.CPUQuota),
 		CpusetCpus:           c.CPUSet,
+		CPURealtimePeriod:    int64(c.CPURealtimePeriod),
+		CPURealtimeRuntime:   int64(c.CPURealtimeRuntime),
 		Ulimits:              ulimits,
 		Devices:              deviceMappings,
 		OomKillDisable:       &c.OomKillDisable,

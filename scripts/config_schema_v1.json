@@ -36,6 +36,8 @@
         "cpu_shares": {"type": ["number", "string"]},
         "cpu_quota": {"type": ["number", "string"]},
         "cpuset": {"type": "string"},
+        "cpu_rt_period": {"type": ["number", "string"]},
+        "cpu_rt_runtime": {"type": ["number", "string"]},
         "description": {"type": "string"},
         "device_read_bps": {"$ref": "#/definitions/list_or_dict"},
         "device_read_iops": {"$ref": "#/definitions/list_or_dict"},

@@ -140,6 +140,28 @@ func TestCPUPeriod(t *testing.T) {
 	assert.Equal(t, int64(50000), hostCfg.CPUPeriod)
 }
 
+func TestCPURealTimePeriod(t *testing.T) {
+	ctx := project.Context{}
+	sc := &config.ServiceConfig{
+		CPURealtimePeriod: 1000,
+	}
+	_, hostCfg, err := Convert(sc, ctx)
+	assert.Nil(t, err)
+
+	assert.Equal(t, int64(1000), hostCfg.CPURealtimePeriod)
+}
+
+func TestCPURealTimeRuntime(t *testing.T) {
+	ctx := project.Context{}
+	sc := &config.ServiceConfig{
+		CPURealtimePeriod: 100,
+	}
+	_, hostCfg, err := Convert(sc, ctx)
+	assert.Nil(t, err)
+
+	assert.Equal(t, int64(100), hostCfg.CPURealtimeRuntime)
+}
+
 func TestDNSOpt(t *testing.T) {
 	ctx := project.Context{}
 	sc := &config.ServiceConfig{

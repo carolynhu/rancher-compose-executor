@@ -300,6 +300,8 @@ def test_args(client, compose):
         assert launch_config.stopTimeout == 10
         assert launch_config.dnsOpt == ['abc']
         assert launch_config.cpuPeriod == 10000
+        assert launch_config.cpuRealtimePeriod == 1000
+        assert launch_config.cpuRealtimeRuntime == 100
         assert launch_config.memorySwappiness == 100
         assert launch_config.oomKillDisable
         assert launch_config.ipcMode == 'host'

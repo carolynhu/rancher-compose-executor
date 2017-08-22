@@ -81,6 +81,8 @@ web:
     dns_opt:
     - abc
     cpu_period: 10000
+    cpu_rt_period: 1000,
+    cpu_rt_runtime: 100,
     mem_swappiness: 100
     oom_kill_disable: true
     ipc: host

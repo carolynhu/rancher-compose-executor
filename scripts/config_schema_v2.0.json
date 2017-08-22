@@ -50,6 +50,8 @@
         "cpu_shares": {"type": ["number", "string"]},
         "cpu_quota": {"type": ["number", "string"]},
         "cpuset": {"type": "string"},
+        "cpu_rt_period": {"type": ["number", "string"]},
+        "cpu_rt_runtime": {"type": ["number", "string"]},
         "default_cert": {"type": "string"},
         "depends_on": {"$ref": "#/definitions/list_of_strings"},
         "description": {"type": "string"},
