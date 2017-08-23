@@ -70,6 +70,7 @@ type ServiceConfigV1 struct {
 	Privileged          bool                     `yaml:"privileged,omitempty"`
 	Restart             string                   `yaml:"restart,omitempty"`
 	ReadOnly            bool                     `yaml:"read_only,omitempty"`
+	RequestedHost       string                   `yaml:"requested_host,omitempty"`
 	Secrets             SecretReferences         `yaml:"secrets,omitempty"`
 	ShmSize             yaml.MemStringorInt      `yaml:"shm_size,omitempty"`
 	StdinOpen           bool                     `yaml:"stdin_open,omitempty"`
@@ -189,6 +190,7 @@ type ServiceConfig struct {
 	Uts                 string                   `yaml:"uts,omitempty"`
 	Restart             string                   `yaml:"restart,omitempty"`
 	ReadOnly            bool                     `yaml:"read_only,omitempty"`
+	RequestedHost       string                   `yaml:"requested_host,omitempty"`
 	StdinOpen           bool                     `yaml:"stdin_open,omitempty"`
 	Tty                 bool                     `yaml:"tty,omitempty"`
 	User                string                   `yaml:"user,omitempty"`
