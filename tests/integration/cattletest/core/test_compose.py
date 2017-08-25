@@ -193,6 +193,10 @@ def test_build(client, compose):
 
 
 def test_args(client, compose):
+    requested_host = register_simulated_host(client)
+    requested_host = client.update(requested_host, name="scaledHost")
+    client.wait_success(requested_host)
+
     project_name = create_project(compose, file='assets/full-with-build.yml')
     project_with_build = find_one(client.list_stack, name=project_name)
     service = find_one(project_with_build.services)
@@ -292,6 +296,7 @@ def test_args(client, compose):
         assert launch_config.groupAdd == ['root']
         assert launch_config.cpuQuota == 20000
         assert launch_config.readOnly
+        assert launch_config.requestedHostId == requested_host.id
         assert launch_config.oomScoreAdj == 100
         assert launch_config.shmSize == 1024
         assert launch_config.cgroupParent == 'abcd'
