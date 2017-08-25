@@ -99,6 +99,25 @@ func createLaunchConfig(r *RancherService, name string, serviceConfig *config.Se
 	result.VolumeDriver = hostConfig.VolumeDriver
 	result.MilliCpuReservation = int64(serviceConfig.MilliCpuReservation)
 
+	if serviceConfig.RequestedHost != "" {
+		hosts, err := r.Client().Host.List(&client.ListOpts{
+			Filters: map[string]interface{}{
+				"name":         serviceConfig.RequestedHost,
+				"removed_null": nil,
+			},
+		})
+
+		if err != nil {
+			return result, err
+		}
+
+		if len(hosts.Data) <= 0 {
+			return result, err
+		}
+
+		result.RequestedHostId = hosts.Data[0].Id
+	}
+
 	setupNetworking(serviceConfig.NetworkMode, &result)
 	setupVolumesFrom(serviceConfig.VolumesFrom, &result)
 
